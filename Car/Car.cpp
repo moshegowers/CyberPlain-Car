@@ -4,6 +4,15 @@
 
 Car::Car() :m_isValid(true){}
 
+Car::Car(const Car &car)
+{
+	strcpy_s(m_make, sizeof(m_make), car.m_make);
+	strcpy_s(m_model, sizeof(m_model), car.m_model);
+	m_year = car.m_year;
+	m_engineVolume = car.m_engineVolume;
+	strcpy_s(m_color, sizeof(m_color), car.m_color);
+}
+
 char* Car::getMake()
 {
 	return m_make;

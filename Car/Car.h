@@ -8,6 +8,9 @@ class Car {
 public:
 	Car();
 
+	//copy cunstructor
+	Car(const Car &car);
+
 	// return company make name of car
 	char *getMake();
 	// assine company make name of car

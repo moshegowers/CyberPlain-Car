@@ -2,15 +2,26 @@
 #include <iostream>
 #include "Car.h"
 
-Car::Car() :m_isValid(true){}
+int Car::s_licenseNum = 10000001;
+
+Car::Car() :m_isValid(true)
+{
+	this->m_licenseNum = ++Car::s_licenseNum;
+}
 
 Car::Car(const Car &car)
 {
+	m_licenseNum = car.m_licenseNum;
 	strcpy_s(m_make, sizeof(m_make), car.m_make);
 	strcpy_s(m_model, sizeof(m_model), car.m_model);
 	m_year = car.m_year;
 	m_engineVolume = car.m_engineVolume;
 	strcpy_s(m_color, sizeof(m_color), car.m_color);
+}
+
+int Car::getLicenseNum()
+{
+	return m_licenseNum;
 }
 
 char* Car::getMake()
@@ -145,6 +156,7 @@ const Car& Car::compareTowCarsByVolume(const Car &lhs, const Car &rhs)
 void Car::printCarDetailes()
 {
 	std::cout << "\n\nDetailes of car is\n-----------------------------" << std::endl;
+	std::cout << "License number: " << this->getLicenseNum() << std::endl;
 	std::cout << "Company make name: " << this->getMake() << std::endl;
 	std::cout << "Model: " << this->getModel() << std::endl;
 	std::cout << "Year: " << this->getYear() << std::endl;

@@ -11,6 +11,8 @@ public:
 	//copy cunstructor
 	Car(const Car &car);
 
+	int getLicenseNum();
+
 	// return company make name of car
 	char *getMake();
 	// assine company make name of car
@@ -48,12 +50,15 @@ public:
 	static const Car& compareTowCarsByVolume(const Car &lhs, const Car &rhs);
 
 private:
+	int		m_licenseNum;
 	char	m_make[10];
 	char	m_model[10];
 	size_t	m_year;
 	size_t	m_engineVolume;
 	char	m_color[10];
 	bool	m_isValid;
+
+	static int	s_licenseNum;
 };
 
 #endif

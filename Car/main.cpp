@@ -6,7 +6,7 @@ void getCarDetailes(Car *car);
 
 void main(void)
 {
-	/*Car car1;
+	Car car1;
 	do
 	{
 		getCarDetailes(&car1);
@@ -18,21 +18,8 @@ void main(void)
 		getCarDetailes(&car2);
 	} while (!car2.getIsValid());
 	
-	Car car3 = Car::compareTowCarsByYear(car1, car2);
-	car3.printCarDetailes();*/
-
-	Car *cars = new Car[10];
-	Car car;
-	getCarDetailes(&car);
-	for (size_t i = 0; i < 10; i++)
-	{
-		cars[i] = car;
-	}
-
-	for (size_t i = 0; i < 10; i++)
-	{
-		cars[i].printCarDetailes();
-	}
+	car1.printCarDetailes();
+	car2.printCarDetailes();
 }
 
 void getCarDetailes(Car *car)

@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include "Car.h"
+using namespace CarNamespace;
 
 int Car::s_licenseNum = 10000001;
 

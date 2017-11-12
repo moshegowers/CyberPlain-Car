@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include "Car.h"
+using namespace CarNamespace;
 
 void getCarDetailes(Car *car);
 

@@ -7,7 +7,7 @@ int Car::s_licenseNum = 10000001;
 
 Car::Car() :m_isValid(true)
 {
-	this->m_licenseNum = ++Car::s_licenseNum;
+	this->m_licenseNum = Car::s_licenseNum++;
 }
 
 Car::Car(const Car &car)
@@ -75,7 +75,7 @@ size_t Car::getYear() const
 }
 void Car::setYear(int year)
 {
-	if (year <= 0 || year >= MAX_YEAR)
+	if (year < MIN_YEAR || year > MAX_YEAR)
 	{
 		printf("The year of car is not valid\n");
 		m_isValid = false;
@@ -92,7 +92,7 @@ size_t Car::getEngineVolume() const
 }
 void Car::setEngineVolume(int engineVolume)
 {
-	if (engineVolume <= 0 || engineVolume >= MAX_VOLUME)
+	if (engineVolume <= 0 || engineVolume > MAX_VOLUME)
 	{
 		printf("The engine volume of car is not valid\n");
 		m_isValid = false;
@@ -128,6 +128,11 @@ void Car::setColor(const char *color)
 bool Car::getIsValid() const
 {
 	return m_isValid;
+}
+
+void CarNamespace::Car::setIsValid(bool isValid)
+{
+	m_isValid = isValid;
 }
 
 const Car& Car::compareTowCarsByYear(const Car &lhs, const Car &rhs)

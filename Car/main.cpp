@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <stdlib.h>
 #include "Car.h"
 using namespace CarNamespace;
 
@@ -10,13 +11,19 @@ void main(void)
 	Car car1;
 	do
 	{
+		car1.setIsValid(true);
 		getCarDetailes(&car1);
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	} while (!car1.getIsValid());
 
 	Car car2;
 	do
 	{
+		car2.setIsValid(true);
 		getCarDetailes(&car2);
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	} while (!car2.getIsValid());
 	
 	car1.printCarDetailes();

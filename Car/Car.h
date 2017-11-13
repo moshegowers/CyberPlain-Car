@@ -2,6 +2,7 @@
 #define CAR_H
 
 #define MAX_YEAR 2017
+#define MIN_YEAR 1950
 #define MAX_VOLUME 3500
 namespace CarNamespace
 {
@@ -41,6 +42,8 @@ namespace CarNamespace
 
 		// return if car detailes is valid
 		bool getIsValid() const;
+		// assine is valid car detailes
+		void setIsValid(bool isValid);
 
 		void printCarDetailes();
 

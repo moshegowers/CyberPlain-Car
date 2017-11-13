@@ -1,26 +1,35 @@
 #include <string>
 #include <iostream>
-#include "Car.h"
+#include "RegularCar.h"
+#include "ElectricCar.h"
 using namespace CarNamespace;
 
 void getCarDetailes(Car *car);
+void getRegularCarDetailes(RegularCar *regularCar);
+void getElectricCarDetailes(ElectricCar *electricCar);
 
 void main(void)
 {
-	Car car1;
+	RegularCar regularCar;
 	do
 	{
-		getCarDetailes(&car1);
-	} while (!car1.getIsValid());
+		regularCar.setIsValid(true);
+		getRegularCarDetailes(&regularCar);
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	} while (!regularCar.getIsValid());
 
-	Car car2;
+	ElectricCar electricCar;
 	do
 	{
-		getCarDetailes(&car2);
-	} while (!car2.getIsValid());
+		electricCar.setIsValid(true);
+		getElectricCarDetailes(&electricCar);
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	} while (!electricCar.getIsValid());
 	
-	car1.printCarDetailes();
-	car2.printCarDetailes();
+	regularCar.printCarDetailes();
+	electricCar.printCarDetailes();
 }
 
 void getCarDetailes(Car *car)
@@ -30,7 +39,7 @@ void getCarDetailes(Car *car)
 		return;
 	}
 	std::string make = "", model = "", color = "";
-	int year = 0, volume = 0;
+	int year = 0;
 
 	printf("\n\nPlease insert company make name of car\n");
 	std::cin >> make;
@@ -56,15 +65,45 @@ void getCarDetailes(Car *car)
 		return;
 	}
 
-	printf("Please insert engine volume of car\n");
-	std::cin >> volume;
-	car->setEngineVolume(volume);
-	if (!car->getIsValid())
+	printf("Please insert color of car\n");
+	std::cin >> color;
+	car->setColor(color.c_str());
+}
+
+void getRegularCarDetailes(RegularCar *regularCar)
+{
+	int volume = 0;
+
+	getCarDetailes(regularCar);
+	if (!regularCar->getIsValid())
 	{
 		return;
 	}
 
-	printf("Please insert color of car\n");
-	std::cin >> color;
-	car->setColor(color.c_str());
+	printf("Please insert engine volume of car\n");
+	std::cin >> volume;
+	regularCar->setEngineVolume(volume);
+	if (!regularCar->getIsValid())
+	{
+		return;
+	}
+}
+
+void getElectricCarDetailes(ElectricCar *electricCar)
+{
+	int batteryCapacity = 0;
+
+	getCarDetailes(electricCar);
+	if (!electricCar->getIsValid())
+	{
+		return;
+	}
+
+	printf("Please insert battery capacity of car\n");
+	std::cin >> batteryCapacity;
+	electricCar->setBatteryCapacity(batteryCapacity);
+	if (!electricCar->getIsValid())
+	{
+		return;
+	}
 }

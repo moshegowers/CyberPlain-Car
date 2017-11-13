@@ -2,7 +2,7 @@
 #define CAR_H
 
 #define MAX_YEAR 2017
-#define MAX_VOLUME 3500
+#define MIN_YEAR 1950
 namespace CarNamespace
 {
 	class Car {
@@ -29,11 +29,6 @@ namespace CarNamespace
 		// assine product year of car
 		void setYear(int year);
 
-		// return engine volume of car
-		size_t getEngineVolume() const;
-		// assine engine volume of car
-		void setEngineVolume(int engineVolume);
-
 		// return color of car
 		char *getColor();
 		// assine color of car
@@ -41,23 +36,23 @@ namespace CarNamespace
 
 		// return if car detailes is valid
 		bool getIsValid() const;
+		// assine is valid car detailes
+		void setIsValid(bool isValid);
 
-		void printCarDetailes();
+		virtual void printCarDetailes();
 
 		//return the greater car, compare it by year of car
 		static const Car& compareTowCarsByYear(const Car &lhs, const Car &rhs);
 
-		//return the greater car, compare it by engine volume of car
-		static const Car& compareTowCarsByVolume(const Car &lhs, const Car &rhs);
+	protected:
+		bool	m_isValid;
 
 	private:
 		int		m_licenseNum;
 		char	m_make[10];
 		char	m_model[10];
 		size_t	m_year;
-		size_t	m_engineVolume;
 		char	m_color[10];
-		bool	m_isValid;
 
 		static int	s_licenseNum;
 	};

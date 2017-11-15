@@ -143,14 +143,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
-    <ClInclude Include="ElectricCar.h" />
-    <ClInclude Include="RegularCar.h" />
+    <ClInclude Include="ElectricEngine.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="RegularEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
-    <ClCompile Include="ElectricCar.cpp" />
+    <ClCompile Include="ElectricEngine.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="RegularCar.cpp" />
+    <ClCompile Include="RegularEngine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

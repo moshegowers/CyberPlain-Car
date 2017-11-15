@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include "Car.h"
+#include "Engine.h"
 using namespace CarNamespace;
 
 int Car::s_licenseNum = 10000001;
@@ -16,7 +17,6 @@ Car::Car(const Car &car)
 	strcpy_s(m_make, sizeof(m_make), car.m_make);
 	strcpy_s(m_model, sizeof(m_model), car.m_model);
 	m_year = car.m_year;
-	m_engineVolume = car.m_engineVolume;
 	strcpy_s(m_color, sizeof(m_color), car.m_color);
 }
 
@@ -86,23 +86,6 @@ void Car::setYear(int year)
 	}
 }
 
-size_t Car::getEngineVolume() const
-{
-	return m_engineVolume;
-}
-void Car::setEngineVolume(int engineVolume)
-{
-	if (engineVolume <= 0 || engineVolume > MAX_VOLUME)
-	{
-		printf("The engine volume of car is not valid\n");
-		m_isValid = false;
-	}
-	else
-	{
-		m_engineVolume = engineVolume;
-	}
-}
-
 char* Car::getColor()
 {
 	return m_color;
@@ -135,6 +118,16 @@ void CarNamespace::Car::setIsValid(bool isValid)
 	m_isValid = isValid;
 }
 
+Engine *CarNamespace::Car::getEngine() const
+{
+	return m_engine;
+}
+
+void CarNamespace::Car::setEngine(Engine *engine)
+{
+	m_engine = engine;
+}
+
 const Car& Car::compareTowCarsByYear(const Car &lhs, const Car &rhs)
 {
 	if (lhs.getYear() == rhs.getYear())
@@ -147,26 +140,62 @@ const Car& Car::compareTowCarsByYear(const Car &lhs, const Car &rhs)
 	}
 }
 
-const Car& Car::compareTowCarsByVolume(const Car &lhs, const Car &rhs)
+EngineType Car::getCarDetailes()
 {
-	if (lhs.getEngineVolume() == rhs.getEngineVolume())
+	std::string make = "", model = "", color = "";
+	int year = 0, engineType = static_cast<int>(EngineType::Default);
+
+	printf("\n\nPlease insert company make name of car\n");
+	std::cin >> make;
+	this->setMake(make.c_str());
+	if (!this->getIsValid())
 	{
-		return lhs;
+		return EngineType::Default;
 	}
-	else
+
+	printf("Please insert model of car\n");
+	std::cin >> model;
+	this->setModel(model.c_str());
+	if (!this->getIsValid())
 	{
-		return lhs.getEngineVolume() > rhs.getEngineVolume() ? lhs : rhs;
+		return EngineType::Default;
 	}
+
+	printf("Please insert year of car\n");
+	std::cin >> year;
+	this->setYear(year);
+	if (!this->getIsValid())
+	{
+		return EngineType::Default;
+	}
+
+	printf("Please insert color of car\n");
+	std::cin >> color;
+	this->setColor(color.c_str());
+	if (!this->getIsValid())
+	{
+		return EngineType::Default;
+	}
+
+	printf("Please insert engine of car (use %d for regular or %d for electric\n", EngineType::Regular, EngineType::Elctric);
+	std::cin >> engineType;
+	if (engineType != EngineType::Regular && engineType != EngineType::Elctric)
+	{
+		this->setIsValid(false);
+		return EngineType::Default;
+	}
+
+	return static_cast<EngineType>(engineType);
 }
 
 void Car::printCarDetailes()
 {
 	std::cout << "\n\nDetailes of car is\n-----------------------------" << std::endl;
-	std::cout << "License number: " << this->getLicenseNum() << std::endl;
-	std::cout << "Company make name: " << this->getMake() << std::endl;
-	std::cout << "Model: " << this->getModel() << std::endl;
-	std::cout << "Year: " << this->getYear() << std::endl;
-	std::cout << "Engine volume: " << this->getEngineVolume() << std::endl;
-	std::cout << "Color: " << this->getColor() << std::endl;
+	std::cout << "License number: " << this->m_licenseNum << std::endl;
+	std::cout << "Company make name: " << this->m_make << std::endl;
+	std::cout << "Model: " << this->m_model << std::endl;
+	std::cout << "Year: " << this->m_year << std::endl;
+	std::cout << "Color: " << this->m_color << std::endl;
+	this->m_engine->printEngineDetailes();
 	std::cout << "-----------------------------" << std::endl;
 }

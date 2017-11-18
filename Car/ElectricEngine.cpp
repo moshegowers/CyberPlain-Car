@@ -15,7 +15,7 @@ void ElectricEngine::setBatteryCapacity(size_t batteryCapacity)
 	}
 }
 
-bool ElectricEngine::getElctricEngineDetailes()
+bool ElectricEngine::getEngineDetailes()
 {
 	size_t batteryCapacity = 0;
 	printf("Please insert battery capacity of car\n");

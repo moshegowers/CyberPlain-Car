@@ -8,6 +8,8 @@
 class ElectricEngine : public Engine
 {
 public:
+	ElectricEngine() :m_batteryCapacity(0)
+	{}
 	ElectricEngine(size_t batteryCapacity):m_batteryCapacity(batteryCapacity)
 	{}
 
@@ -17,7 +19,7 @@ public:
 	// assine engine volume of car
 	void setBatteryCapacity(size_t batteryCapacity);
 
-	bool getElctricEngineDetailes();
+	bool getEngineDetailes();
 	void printEngineDetailes();
 
 private:

@@ -1,109 +1,51 @@
 #include <string>
 #include <iostream>
-#include "RegularCar.h"
-#include "ElectricCar.h"
+#include "RegularEngine.h"
+#include "ElectricEngine.h"
+#include "Car.h"
 using namespace CarNamespace;
-
-void getCarDetailes(Car *car);
-void getRegularCarDetailes(RegularCar *regularCar);
-void getElectricCarDetailes(ElectricCar *electricCar);
 
 void main(void)
 {
-	RegularCar regularCar;
+	Car car;
+	Engine *engine;
+	EngineType enumEngineType = EngineType::Default;
+	while (enumEngineType == EngineType::Default)
+	{
+		enumEngineType = car.getCarDetailes();
+	}
+	if (enumEngineType == EngineType::Regular)
+	{
+		engine = new RegularEngine;		
+	}
+	else if (enumEngineType == EngineType::Elctric) 
+	{
+		engine = new ElectricEngine;
+	}
+	engine->getEngineDetailes();
+	car.setEngine(engine);
+	car.printCarDetailes();
+
+	std::cout << "\n************************************";
+	std::cout << "\n* now we wiil change engine of car *";
+	std::cout << "\n************************************\n";
+
+	size_t engineType = static_cast<int>(EngineType::Default);
 	do
 	{
-		regularCar.setIsValid(true);
-		getRegularCarDetailes(&regularCar);
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	} while (!regularCar.getIsValid());
+		printf("Please insert engine of car (use %d for regular or %d for electric\n", EngineType::Regular, EngineType::Elctric);
+		std::cin >> engineType;
+	} while (engineType != EngineType::Regular && engineType != EngineType::Elctric);
 
-	ElectricCar electricCar;
-	do
+	if (engineType == EngineType::Regular)
 	{
-		electricCar.setIsValid(true);
-		getElectricCarDetailes(&electricCar);
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	} while (!electricCar.getIsValid());
-	
-	regularCar.printCarDetailes();
-	electricCar.printCarDetailes();
-}
-
-void getCarDetailes(Car *car)
-{
-	if (car == NULL)
-	{
-		return;
+		engine = new RegularEngine;
 	}
-	std::string make = "", model = "", color = "";
-	int year = 0;
-
-	printf("\n\nPlease insert company make name of car\n");
-	std::cin >> make;
-	car->setMake(make.c_str());
-	if (!car->getIsValid())
+	else if (engineType == EngineType::Elctric)
 	{
-		return;
+		engine = new ElectricEngine;
 	}
-
-	printf("Please insert model of car\n");
-	std::cin >> model;
-	car->setModel(model.c_str());
-	if (!car->getIsValid())
-	{
-		return;
-	}
-
-	printf("Please insert year of car\n");
-	std::cin >> year;
-	car->setYear(year);
-	if (!car->getIsValid())
-	{
-		return;
-	}
-
-	printf("Please insert color of car\n");
-	std::cin >> color;
-	car->setColor(color.c_str());
-}
-
-void getRegularCarDetailes(RegularCar *regularCar)
-{
-	int volume = 0;
-
-	getCarDetailes(regularCar);
-	if (!regularCar->getIsValid())
-	{
-		return;
-	}
-
-	printf("Please insert engine volume of car\n");
-	std::cin >> volume;
-	regularCar->setEngineVolume(volume);
-	if (!regularCar->getIsValid())
-	{
-		return;
-	}
-}
-
-void getElectricCarDetailes(ElectricCar *electricCar)
-{
-	int batteryCapacity = 0;
-
-	getCarDetailes(electricCar);
-	if (!electricCar->getIsValid())
-	{
-		return;
-	}
-
-	printf("Please insert battery capacity of car\n");
-	std::cin >> batteryCapacity;
-	electricCar->setBatteryCapacity(batteryCapacity);
-	if (!electricCar->getIsValid())
-	{
-		return;
-	}
+	engine->getEngineDetailes();
+	car.setEngine(engine);
+	car.printCarDetailes();
 }

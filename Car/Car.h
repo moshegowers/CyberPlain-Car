@@ -1,3 +1,5 @@
+#include "Engine.h"
+
 #ifndef CAR_H
 #define CAR_H
 
@@ -39,6 +41,11 @@ namespace CarNamespace
 		// assine is valid car detailes
 		void setIsValid(bool isValid);
 
+		Engine* getEngine() const;
+
+		void setEngine(Engine *engine);
+
+		EngineType getCarDetailes();
 		virtual void printCarDetailes();
 
 		//return the greater car, compare it by year of car
@@ -53,6 +60,7 @@ namespace CarNamespace
 		char	m_model[10];
 		size_t	m_year;
 		char	m_color[10];
+		Engine  *m_engine;
 
 		static int	s_licenseNum;
 	};

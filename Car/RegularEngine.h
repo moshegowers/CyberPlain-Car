@@ -8,6 +8,8 @@
 class	RegularEngine : public Engine
 {
 public:
+	RegularEngine() : m_engineVolume(0)
+	{}
 	RegularEngine(size_t engineVolume) : m_engineVolume(engineVolume)
 	{}
 
@@ -20,7 +22,7 @@ public:
 	//return the greater car, compare it by engine volume of car
 	static const RegularEngine& compareTowCarsByVolume(const RegularEngine &lhs, const RegularEngine &rhs);
 
-	bool getRegularEngineDetailes();
+	bool getEngineDetailes();
 	void printEngineDetailes();
 
 private:

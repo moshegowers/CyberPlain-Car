@@ -118,7 +118,7 @@ void CarNamespace::Car::setIsValid(bool isValid)
 	m_isValid = isValid;
 }
 
-Engine *CarNamespace::Car::getEngine() const
+Engine* CarNamespace::Car::getEngine() const
 {
 	return m_engine;
 }

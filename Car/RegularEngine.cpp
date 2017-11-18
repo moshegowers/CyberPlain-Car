@@ -26,7 +26,7 @@ const RegularEngine & RegularEngine::compareTowCarsByVolume(const RegularEngine 
 	}
 }
 
-bool RegularEngine::getRegularEngineDetailes()
+bool RegularEngine::getEngineDetailes()
 {
 	size_t engineVolume = 0;
 	printf("Please insert engine volume of car\n");

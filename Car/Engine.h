@@ -13,6 +13,10 @@ class Engine
 public:
 	virtual void printEngineDetailes()
 	{}
+	virtual bool getEngineDetailes()
+	{
+		return EngineType::Default;
+	}
 };
 
 #endif

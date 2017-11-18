@@ -5,6 +5,7 @@ using namespace CarNamespace;
 #define REGULAR_CAR_H
 
 #define MAX_VOLUME 3500
+#define MIN_VOLUME 900
 class RegularCar : public Car
 {
 public:

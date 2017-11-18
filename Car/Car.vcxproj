@@ -144,11 +144,13 @@
   <ItemGroup>
     <ClInclude Include="Car.h" />
     <ClInclude Include="ElectricCar.h" />
+    <ClInclude Include="Garage.h" />
     <ClInclude Include="RegularCar.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="ElectricCar.cpp" />
+    <ClCompile Include="Garage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RegularCar.cpp" />
   </ItemGroup>

@@ -5,6 +5,13 @@
 #define MIN_YEAR 1950
 namespace CarNamespace
 {
+	enum CarType
+	{
+		Default = 0,
+		Regular = 1,
+		Electric = 2
+	};
+
 	class Car {
 	public:
 		Car();

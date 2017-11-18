@@ -15,7 +15,7 @@ size_t ElectricCar::getBatteryCapacity() const
 }
 void ElectricCar::setBatteryCapacity(int batteryCapacity)
 {
-	if (batteryCapacity <= 0 || batteryCapacity >= MAX_BATTERY_CAPACITY)
+	if (batteryCapacity < MIN_BATTERY_CAPACITY || batteryCapacity > MAX_BATTERY_CAPACITY)
 	{
 		printf("The battery Capacity of car is not valid\n");
 		m_isValid = false;

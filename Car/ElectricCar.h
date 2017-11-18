@@ -5,6 +5,7 @@ using namespace CarNamespace;
 #define ELECTRIC_CAR_H
 
 #define MAX_BATTERY_CAPACITY 3500
+#define MIN_BATTERY_CAPACITY 1000
 class ElectricCar : public Car
 {
 public:

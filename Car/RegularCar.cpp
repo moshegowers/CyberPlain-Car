@@ -15,7 +15,7 @@ size_t RegularCar::getEngineVolume() const
 }
 void RegularCar::setEngineVolume(int engineVolume)
 {
-	if (engineVolume <= 0 || engineVolume >= MAX_VOLUME)
+	if (engineVolume < MIN_VOLUME || engineVolume > MAX_VOLUME)
 	{
 		printf("The engine volume of car is not valid\n");
 		m_isValid = false;
